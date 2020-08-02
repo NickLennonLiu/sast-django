@@ -1,3 +1,3 @@
-# SAST Frontend & Homework
+# SAST Frontend & Django Homework
 
-科协的任务罢了
+组织的任务罢了
