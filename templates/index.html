@@ -11,23 +11,23 @@
 {% else %}
     <p> You are not logged on yet! Please log in or sign up a new account</p>
 {% endif %}
-<form action="../search/" method="post">
+<form method="get" action={% url 'search'%} >
     {% csrf_token %}
     <label for="keyword"> Input keyword:</label> <br>
     <input type="text" id="keyword" name="keyword"> <br>
     <input type="submit" value = "Search">
 </form>
-<form action="../login/" method="get">
+<form  method="get" action={% url 'login' %}>
     {%  csrf_token %}
     <input type="submit" value = "Login">
 </form>
-<form action="../logout/" method="post">
+<form method="post" action={% url 'logout' %} >
     {%  csrf_token %}
     <input type="submit" value = "Logout">
 </form>
-<form action="../register/" method="get">
+<form method="get" action={% url 'register'%} >
     {%  csrf_token %}
-    <input type="submit" value = "Sign Up">
+    <input type="submit" value="Sign Up">
 </form>
 </body>
 </html>
