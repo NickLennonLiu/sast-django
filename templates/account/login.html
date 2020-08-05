@@ -1,20 +1,61 @@
 <!DOCTYPE html>
-<html lang="en">
+
+{% load static %}
+
+<html>
+
 <head>
-    <meta charset="UTF-8">
-    <title>Login</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Josearch</title>
+    <link rel="stylesheet" href={% static 'assets/bootstrap/css/bootstrap.min.css' %}>
+    <link rel="stylesheet" href={% static 'assets/css/Navigation-with-Button.css' %}>
+    <link rel="stylesheet" href={% static 'assets/css/styles.css' %}>
 </head>
+
 <body>
-<form method="post" action={% url 'login' %}>
-    {% csrf_token %}
-    {% if error_message %}
-        <p> {{ error_message}} </p>
-    {% endif %}
-    <label for="username">Username: </label> <br>
-    <input type="text" id="username" name="username"> <br>
-    <label for="password">Password: </label> <br>
-    <input type="text" id="password" name="password"> <br>
-    <input type="submit" value="login">
-</form>
+    <div class="main-content">
+        <nav class="navbar navbar-light navbar-expand-md navigation-clean-button">
+            <div class="container"><img style="width: 40px;margin: 10px;" src={% static "assets/img/icon.png"%}><a class="navbar-brand" href="/index/">JoSearch</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+                <div
+                    class="collapse navbar-collapse" id="navcol-1">
+                    <ul class="nav navbar-nav mr-auto">
+                        <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">Theme</a>
+                            <div class="dropdown-menu" role="menu"><a class="dropdown-item" role="presentation" href="#">First Item</a><a class="dropdown-item" role="presentation" href="#">Second Item</a><a class="dropdown-item" role="presentation" href="#">Third Item</a></div>
+                        </li>
+                    </ul>
+            </div>
+    </div>
+    </nav>
+    <div class="container" style="margin-top: 50px;">
+        <div class="row">
+            <div class="col-md-6 text-center"><img class="login-icon" style="margin: 5px;" src={% static "assets/img/icon.png"%}>
+                <p style="font-size: 20px;">All information you need in Josearch!</p>
+            </div>
+            <div class="col">
+
+                <form class="login" action="{% url 'login' %}" method="post">
+                    {% if error_message %}
+                        <p class="error_message" style="padding-left: 5px;margin: 5px"> {{ error_message }}</p>
+                    {% endif %}
+                    {% csrf_token %}
+                    <input type="hidden" name="next" value={{ next }}>
+                    <input class="form-control login-input" type="text" name="username" placeholder="Username">
+                    <input class="form-control login-input" type="password" name="password" placeholder="Password">
+                    <div class="form-row" style="max-width: 400px;margin-right: 0px;margin-left: 0px;padding-right: 5px;padding-left: 5px;">
+                        <div class="col" style="text-align: left;margin-top: 5px;"><a href="/register/">Sign Up?</a></div>
+                        <div class="col" style="text-align: right;"><button class="btn btn-primary" type="submit" style="width: 200px;border-radius: 50px;">Log In</button></div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    </div>
+    <footer class="text-center">
+        <p>@ Junetheriver 2020</p>
+    </footer>
+    <script src={% static "assets/js/jquery.min.js" %}></script>
+    <script src={% static "assets/bootstrap/js/bootstrap.min.js"%}></script>
 </body>
+
 </html>

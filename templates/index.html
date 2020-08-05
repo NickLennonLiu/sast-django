@@ -1,33 +1,61 @@
+{% load static %}
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Josearch</title>
-</head>
-<body>
 
-{% if username %}
-    <p> {{ username }} Welcome!</p>
-{% else %}
-    <p> You are not logged on yet! Please log in or sign up a new account</p>
-{% endif %}
-<form method="get" action={% url 'search'%} >
-    {% csrf_token %}
-    <label for="keyword"> Input keyword:</label> <br>
-    <input type="text" id="keyword" name="keyword"> <br>
-    <input type="submit" value = "Search">
-</form>
-<form  method="get" action={% url 'login' %}>
-    {%  csrf_token %}
-    <input type="submit" value = "Login">
-</form>
-<form method="post" action={% url 'logout' %} >
-    {%  csrf_token %}
-    <input type="submit" value = "Logout">
-</form>
-<form method="get" action={% url 'register'%} >
-    {%  csrf_token %}
-    <input type="submit" value="Sign Up">
-</form>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Josearch</title>
+    <link rel="stylesheet" href={% static 'assets/bootstrap/css/bootstrap.min.css' %}>
+    <link rel="stylesheet" href={% static 'assets/css/Navigation-with-Button.css' %}>
+    <link rel="stylesheet" href={% static 'assets/css/styles.css' %}>
+</head>
+
+<body>
+    <div class="main-content">
+        <nav class="navbar navbar-light navbar-expand-md navigation-clean-button">
+            <div class="container"><img style="width: 40px;margin: 10px;" src={% static "assets/img/icon.png"%} ><a class="navbar-brand" href="#">JoSearch</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+                <div
+                    class="collapse navbar-collapse" id="navcol-1">
+                    <ul class="nav navbar-nav mr-auto">
+                        <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">Theme</a>
+                            <div class="dropdown-menu" role="menu">
+                                <a class="dropdown-item" role="presentation" href="#">First Item</a>
+                                <a class="dropdown-item" role="presentation" href="#">Second Item</a>
+                                <a class="dropdown-item" role="presentation" href="#">Third Item</a>
+                            </div>
+                        </li>
+                    </ul>
+                    {% if username %}
+
+                        <span class="navbar-text actions">
+                            <div class="navbar-text welcome-text"> Welcome {{ username }}! </div>
+                            <a class="logout" href="/logout/">Log Out</a>
+                        </span>
+                    {% else %}
+                        <span class="navbar-text actions">
+                            <a class="login" href="/login/">Log In</a>
+                            <a class="btn btn-light action-button" role="button" href="/register/">Sign Up</a>
+                        </span>
+                    {% endif %}
+
+                </div>
+    </div>
+    </nav>
+    <main>
+        <div class="search-area"><a href="#"><img class="search-icon" src={% static "assets/img/icon.png"%}></a>
+            <form class="d-sm-flex align-items-sm-center" action={% url 'search' %}>
+                <input class="form-control" type="search" placeholder="Enter something..." name="keyword">
+            </form>
+        </div>
+    </main>
+    </div>
+    <footer class="text-center">
+        <p>@ Junetheriver 2020</p>
+    </footer>
+    <script src={% static "assets/js/jquery.min.js" %}></script>
+    <script src={% static "assets/bootstrap/js/bootstrap.min.js"%}></script>
 </body>
+
 </html>

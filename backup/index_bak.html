@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Josearch</title>
+</head>
+<body>
+
+{% if username %}
+    <p> {{ username }} Welcome!</p>
+{% else %}
+    <p> You are not logged on yet! Please log in or sign up a new account</p>
+{% endif %}
+<form method="get" action={% url 'search'%} >
+    <!--{% csrf_token %}-->
+    <label for="keyword"> Input keyword:</label> <br>
+    <input type="text" id="keyword" name="keyword"> <br>
+    <input type="submit" value = "Search">
+</form>
+<form  method="get" action={% url 'login' %}>
+    <!--{% csrf_token %}-->
+    <input type="submit" value = "Login">
+</form>
+<form method="post" action={% url 'logout' %} >
+    <!--{% csrf_token %}-->
+    <input type="submit" value = "Logout">
+</form>
+<form method="get" action={% url 'register'%} >
+    <!--{% csrf_token %}-->
+    <input type="submit" value="Sign Up">
+</form>
+</body>
+</html>

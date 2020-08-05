@@ -2,9 +2,22 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>{{ keyword }}</title>
 </head>
 <body>
+
+<p> Used time: {{ used_time }}</p>
+
+
+{% if not result %}
+    <p> Nothing there but chickens! </p>
+{% else %}
+    <ul>
+        {% for article in result %}
+            <li>{{ article.title }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
 
 </body>
 </html>

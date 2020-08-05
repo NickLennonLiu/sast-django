@@ -5,11 +5,13 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from articles.models import Article
 from django.db.models import Q
+import datetime
 
 
 def login(request):
     if request.method == "GET":
-        return render(request, 'account/login.html')
+        next_step = request.GET.get("next")
+        return render(request, 'account/login.html', {"next":next_step})
     username = request.POST.get("username")
     password = request.POST.get("password")
     # email = request.POST.get("email")
@@ -18,7 +20,7 @@ def login(request):
         return render(request, 'account/login.html', {"error_message": "Wrong username or password!"})
     else:
         auth.login(request, user_obj)
-        path = request.GET.get("next") or "/index/"
+        path = request.POST.get("next") or "/index/"
         return HttpResponseRedirect(path)
 
 
@@ -46,14 +48,19 @@ def register(request):
 @login_required
 def search(request):
     keyword = request.GET.get("keyword")
-
+    time = datetime.datetime.now()
     result = Article.objects.filter(Q(title__contains=keyword) | Q(content__contains=keyword))
-
-    return HttpResponse(result)
+    timedelta = datetime.datetime.now() - time
+    content = {
+        "result": result,
+        "used_time": timedelta,
+        "keyword": keyword
+    }
+    return render(request, "search/result.html", content)
 
 
 def detail(request, article_id):
-    return render(request, "search/result.html", {"article_id": article_id})
+    return render(request, "search/detail.html", {"article_id": article_id})
 
 
 def logout(request):
