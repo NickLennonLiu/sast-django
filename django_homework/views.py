@@ -20,7 +20,7 @@ def login(request):
         return render(request, 'account/login.html', {"error_message": "Wrong username or password!"})
     else:
         auth.login(request, user_obj)
-        path = request.POST.get("next") or "/index/"
+        path = request.POST.get("next") if request.POST.get("next")!="None" else "/index/"
         return HttpResponseRedirect(path)
 
 
