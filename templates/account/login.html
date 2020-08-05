@@ -39,7 +39,7 @@
                         <p class="error_message" style="padding-left: 5px;margin: 5px"> {{ error_message }}</p>
                     {% endif %}
                     {% csrf_token %}
-                    <input type="hidden" name="next" value={{ next }}>
+                    {% if next %}<input type="hidden" name="next" value={{ next }}>{% endif %}
                     <input class="form-control login-input" type="text" name="username" placeholder="Username">
                     <input class="form-control login-input" type="password" name="password" placeholder="Password">
                     <div class="form-row" style="max-width: 400px;margin-right: 0px;margin-left: 0px;padding-right: 5px;padding-left: 5px;">
