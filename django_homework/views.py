@@ -1,5 +1,5 @@
 from django.http import Http404, HttpResponse, HttpResponseRedirect
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import auth
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
@@ -47,20 +47,23 @@ def register(request):
 
 @login_required
 def search(request):
+    username = auth.get_user(request).username
     keyword = request.GET.get("keyword")
     time = datetime.datetime.now()
     result = Article.objects.filter(Q(title__contains=keyword) | Q(content__contains=keyword))
     timedelta = datetime.datetime.now() - time
     content = {
         "result": result,
-        "used_time": timedelta,
-        "keyword": keyword
+        "used_time": timedelta.total_seconds(),
+        "keyword": keyword,
+        "username": username
     }
     return render(request, "search/result.html", content)
 
 
 def detail(request, article_id):
-    return render(request, "search/detail.html", {"article_id": article_id})
+    article = get_object_or_404(Article, pk=article_id)
+    return render(request, "search/detail.html", {"article": article})
 
 
 def logout(request):

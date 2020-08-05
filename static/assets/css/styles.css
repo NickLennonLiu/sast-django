@@ -5,6 +5,15 @@
   width: 70%;
   height: 50px;
   max-width: 500px;
+  font-size:20px;
+  padding-left:10px;
+}
+
+
+
+#top-search {
+  width: 70%;
+  max-width: 500px;
 }
 
 .container.d-md-flex.justify-content-md-center.align-items-md-center {
@@ -125,4 +134,34 @@ footer {
 
 [type=submit] {
   margin-top: 5px;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  padding-top: 10px;
+}
+
+.row.title {
+  font-size: 20px;
+  padding: 10px;
+}
+
+.title {
+  color: white;
+}
+
+.matched {
+  color: black;
+}
+
+.row.article {
+  border-radius: 30px;
+  max-width: 1100px;
+  background-color: lightblue;
+  margin-top: 15px;
+}
+
+.row.matched {
+  padding: 10px;
 }

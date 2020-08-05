@@ -1,23 +1,74 @@
 <!DOCTYPE html>
-<html lang="en">
+
+{% load static %}
+{% load find_clips %}
+<html>
+
 <head>
-    <meta charset="UTF-8">
-    <title>{{ keyword }}</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Josearch</title>
+    <link rel="stylesheet" href={% static 'assets/bootstrap/css/bootstrap.min.css' %}>
+    <link rel="stylesheet" href={% static 'assets/css/Navigation-with-Button.css' %}>
+    <link rel="stylesheet" href={% static 'assets/css/styles.css' %}>
 </head>
+
 <body>
+    <main style="min-height: calc(100vh - 50px);">
+        <header>
+            <nav class="navbar navbar-light navbar-expand-md navigation-clean-button">
+                <div class="container"><img style="width: 40px;margin: 10px;" src={% static "assets/img/icon.png"%} ><a class="navbar-brand" href="/index/">JoSearch</a>
+                    <ul class="nav navbar-nav mr-auto">
+                        <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">Theme</a>
+                            <div class="dropdown-menu" role="menu"><a class="dropdown-item" role="presentation" href="#">First Item</a><a class="dropdown-item" role="presentation" href="#">Second Item</a><a class="dropdown-item" role="presentation" href="#">Third Item</a></div>
+                        </li>
+                    </ul><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
 
-<p> Used time: {{ used_time }}</p>
+                    <form id="top-search" action={% url 'search' %}>
+                        <input type="search" name="keyword" placeholder={{ keyword }}>
+                    </form>
+                    <div class="collapse navbar-collapse" id="navcol"><span class="text-center navbar-text actions"><a class="login" >{{ username }}</a> <a class="btn btn-light action-button" role="button" href="/logout/">Log Out</a></span></div>
+                </div>
+            </nav>
+        </header>
+        <div class="container d-flex flex-column justify-content-center align-items-center align-content-center align-items-xl-center">
 
-
-{% if not result %}
-    <p> Nothing there but chickens! </p>
-{% else %}
-    <ul>
-        {% for article in result %}
-            <li>{{ article.title }}</li>
-        {% endfor %}
-    </ul>
-{% endif %}
-
+            <div class="col-sm-12 col-md-12 col-lg-10 col-xl-9">
+                <p> Used time: {{ used_time }} seconds</p>
+                {% for article in result %}
+                    <div class="row article">
+                        <div class="col-auto col-sm-3 col-md-auto col-lg-auto col-xl-auto d-flex flex-column justify-content-center align-items-end"><img style="max-width: 100px;max-height: 100px;" src={% static 'assets/img/icon.png' %}></div>
+                        <div class="col content">
+                            <div class="row title" >
+                                <div class="col"><a class="title" href="/detail/{{ article.id }}/">{{ article.title }}</a></div>
+                            </div>
+                            <div class="row matched" >
+                                <div class="col">
+                                    <p class="matched">{{ article|find_clips:keyword }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <nav class="pagination">
+                <ul class="pagination">
+                    <li class="page-item"><a class="page-link" href="#" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item"><a class="page-link" href="#">4</a></li>
+                    <li class="page-item"><a class="page-link" href="#">5</a></li>
+                    <li class="page-item"><a class="page-link" href="#" aria-label="Next"><span aria-hidden="true">»</span></a></li>
+                </ul>
+            </nav>
+        </div>
+    </main>
+    <footer class="text-center">
+        <p>@ Junetheriver 2020</p>
+    </footer>
+    <script src={% static "assets/js/jquery.min.js" %}></script>
+    <script src={% static "assets/bootstrap/js/bootstrap.min.js"%}></script>
 </body>
+
 </html>
