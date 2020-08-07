@@ -1,15 +1,63 @@
 <!DOCTYPE html>
-<html lang="en">
+{% load static %}
+<html>
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>{{ article.title }}</title>
+    <link rel="stylesheet" href={% static 'assets/bootstrap/css/bootstrap.min.css' %}>
+    <link rel="stylesheet" href={% static 'assets/css/Navigation-with-Button.css' %}>
+    <link rel="stylesheet" href={% static 'assets/css/styles.css' %}>
 </head>
+
 <body>
+    <main style="min-height: calc(100vh - 50px);">
+        <header>
+            <nav class="navbar navbar-light navbar-expand-md navigation-clean-button">
+                <div class="container"><img style="width: 40px;margin: 10px;" src={% static "assets/img/icon.png" %}><a class="navbar-brand" href="/index/">JoSearch</a>
+                    <ul class="nav navbar-nav mr-auto">
+                        <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">Theme</a>
+                            <div class="dropdown-menu" role="menu">
+                                <button class="dropdown-item color-picker" id="steelblue">Steelblue</button>
+                                <button class="dropdown-item color-picker" id="lightseagreen">LightSeaGreen</button>
+                                <button class="dropdown-item color-picker" id="darkslategray">Darkslategray</button>
+                                <button class="dropdown-item color-picker" id="palevioletred">PaleVioletRed</button>
+                            </div>
+                        </li>
+                    </ul>
+                    {% if username %}
+                        <span class="navbar-text actions">
+                            <div class="navbar-text welcome-text"> {{ username }} </div>
+                            <a class="btn btn-light action-button logout" href="/logout/">Log Out</a>
+                        </span>
+                    {% else %}
+                        <span class="navbar-text actions">
+                            <a class="login" href="/login/">Log In</a>
+                            <a class="btn btn-light action-button" role="button" href="/register/">Sign Up</a>
+                        </span>
+                    {% endif %}
+                </div>
+            </nav>
+        </header>
+        <div class="container d-flex flex-column justify-content-center align-items-center align-content-center align-items-xl-center">
+            <article>
+                <h1 class="post-title"><br>{{ article.title }}</h1>
+                <p class="post-info" style="text-align: center;display: flex;justify-content: center;"><span class="info-source">来源：{{ article.source }}</span><span class="info-time">时间：{{ article.time }}</span></p>
+                <div class="post-content">
+                    {% for para in content %}
+                        <p>{{ para }}</p>
+                    {% endfor %}
+                </div>
 
-<h1>{{ article.title }}</h1>
-<p>{{ article.time }}</p>
-<p>{{ article.source }}</p>
-<p>{{ article.content }}</p>
-
+            </article>
+        </div>
+    </main>
+    <footer class="text-center">
+        <p>@ Junetheriver 2020</p>
+    </footer>
+    <script src={% static "assets/js/jquery.min.js" %}></script>
+    <script src={% static "assets/bootstrap/js/bootstrap.min.js" %}></script>
+    <script src={% static "assets/js/nav.js" %}></script>
 </body>
+
 </html>

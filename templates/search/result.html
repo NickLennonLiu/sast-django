@@ -20,7 +20,12 @@
                 <div class="container"><img style="width: 40px;margin: 10px;" src={% static "assets/img/icon.png"%} ><a class="navbar-brand" href="/index/">JoSearch</a>
                     <ul class="nav navbar-nav mr-auto">
                         <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">Theme</a>
-                            <div class="dropdown-menu" role="menu"><a class="dropdown-item" role="presentation" href="#">First Item</a><a class="dropdown-item" role="presentation" href="#">Second Item</a><a class="dropdown-item" role="presentation" href="#">Third Item</a></div>
+                            <div class="dropdown-menu" role="menu">
+                                <button class="dropdown-item color-picker" id="steelblue">Steelblue</button>
+                                <button class="dropdown-item color-picker" id="lightseagreen">LightSeaGreen</button>
+                                <button class="dropdown-item color-picker" id="darkslategray">Darkslategray</button>
+                                <button class="dropdown-item color-picker" id="palevioletred">PaleVioletRed</button>
+                            </div>
                         </li>
                     </ul><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
 
@@ -69,6 +74,8 @@
     </footer>
     <script src={% static "assets/js/jquery.min.js" %}></script>
     <script src={% static "assets/bootstrap/js/bootstrap.min.js"%}></script>
+    <script src={% static "assets/js/highlight.js"%}></script>
+    <script src={% static "assets/js/nav.js" %}></script>
 </body>
 
 </html>

@@ -1,3 +1,5 @@
+
+
 [type=search] {
   border-radius: 50px;
   border-width: 1px;
@@ -8,6 +10,7 @@
   font-size:20px;
   padding-left:10px;
 }
+
 
 
 
@@ -145,23 +148,111 @@ footer {
 .row.title {
   font-size: 20px;
   padding: 10px;
+  color: var(--text);
 }
 
 .title {
-  color: white;
+  color: var(--text);
 }
 
-.matched {
-  color: black;
-}
 
 .row.article {
   border-radius: 30px;
   max-width: 1100px;
-  background-color: lightblue;
+  background-color: var(--secondary);
   margin-top: 15px;
 }
 
 .row.matched {
   padding: 10px;
+  color: var(--caption)
+}
+
+
+.post-info {
+  margin-top: 20px;
+  margin-bottom: 50px;
+  color: var(--caption)
+}
+
+.info-source {
+  margin-right: 5px;
+}
+
+.post-title {
+  text-align: center;
+  color: var(--text);
+}
+
+.info-time {
+  margin-left: 5px;
+}
+
+.post-content {
+  text-indent: 2em;
+  color: var(--text)
+;
+}
+
+.highlight {
+  color: #FFEB3B;
+}
+
+.matched {
+  color: white;
+}
+
+body {
+  background-color: var(--primary);
+}
+
+.navbar {
+  background-color: var(--primary)!important;
+}
+
+.navbar-brand {
+  color: var(--secondary)!important;
+}
+
+.nav-link {
+  color: var(--text)!important;
+}
+
+.navigation-clean-button .actions .login {
+  color: var(--text)!important;
+}
+
+.welcome-text {
+  color: var(--text)!important;
+}
+.login {
+  color: var(--text)!important;
+}
+.logout {
+  color: var(--text)!important;
+  margin-left:5px;
+}
+.register {
+  color: var(--text)!important;
+  margin-left:5px;
+}
+.action-button {
+  background-color: var(--secondary)!important;
+}
+
+.slagon {
+  font-size:20px;
+  color: var(--secondary)!important;
+}
+
+.register-submit {
+  color: var(--text)!important;
+}
+
+.login-submit {
+  color: var(--text)!important;
+}
+
+.sign-up {
+  color: var(--text)!important;
 }

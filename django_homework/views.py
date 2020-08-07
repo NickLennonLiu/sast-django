@@ -62,8 +62,11 @@ def search(request):
 
 
 def detail(request, article_id):
+    username = auth.get_user(request).username
     article = get_object_or_404(Article, pk=article_id)
-    return render(request, "search/detail.html", {"article": article})
+    paras = article.content.split('\n')
+    # article.content = content
+    return render(request, "search/detail.html", {"article": article, "content": paras, "username": username})
 
 
 def logout(request):

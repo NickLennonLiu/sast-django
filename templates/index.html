@@ -21,9 +21,10 @@
                     <ul class="nav navbar-nav mr-auto">
                         <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">Theme</a>
                             <div class="dropdown-menu" role="menu">
-                                <a class="dropdown-item" role="presentation" href="#">First Item</a>
-                                <a class="dropdown-item" role="presentation" href="#">Second Item</a>
-                                <a class="dropdown-item" role="presentation" href="#">Third Item</a>
+                                <button class="dropdown-item color-picker" id="steelblue">Steelblue</button>
+                                <button class="dropdown-item color-picker" id="lightseagreen">LightSeaGreen</button>
+                                <button class="dropdown-item color-picker" id="darkslategray">Darkslategray</button>
+                                <button class="dropdown-item color-picker" id="palevioletred">PaleVioletRed</button>
                             </div>
                         </li>
                     </ul>
@@ -31,12 +32,12 @@
 
                         <span class="navbar-text actions">
                             <div class="navbar-text welcome-text"> Welcome {{ username }}! </div>
-                            <a class="logout" href="/logout/">Log Out</a>
+                            <a class="btn btn-light action-button logout" href="/logout/">Log Out</a>
                         </span>
                     {% else %}
                         <span class="navbar-text actions">
                             <a class="login" href="/login/">Log In</a>
-                            <a class="btn btn-light action-button" role="button" href="/register/">Sign Up</a>
+                            <a class="btn btn-light action-button register" role="button" href="/register/">Sign Up</a>
                         </span>
                     {% endif %}
 
@@ -45,7 +46,7 @@
     </nav>
     <main>
         <div class="search-area"><a href="#"><img class="search-icon" src={% static "assets/img/icon.png"%}></a>
-            <form class="d-sm-flex align-items-sm-center" action={% url 'search' %}>
+            <form class="d-flex align-items-center" action={% url 'search' %}>
                 <input class="form-control" type="search" placeholder="Enter something..." name="keyword">
             </form>
         </div>
@@ -56,6 +57,7 @@
     </footer>
     <script src={% static "assets/js/jquery.min.js" %}></script>
     <script src={% static "assets/bootstrap/js/bootstrap.min.js"%}></script>
+    <script src={% static "assets/js/nav.js" %}></script>
 </body>
 
 </html>

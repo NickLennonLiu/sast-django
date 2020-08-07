@@ -21,7 +21,12 @@
                     class="collapse navbar-collapse" id="navcol-1">
                     <ul class="nav navbar-nav mr-auto">
                         <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">Theme</a>
-                            <div class="dropdown-menu" role="menu"><a class="dropdown-item" role="presentation" href="#">First Item</a><a class="dropdown-item" role="presentation" href="#">Second Item</a><a class="dropdown-item" role="presentation" href="#">Third Item</a></div>
+                            <div class="dropdown-menu" role="menu">
+                                <button class="dropdown-item color-picker" id="steelblue">Steelblue</button>
+                                <button class="dropdown-item color-picker" id="lightseagreen">LightSeaGreen</button>
+                                <button class="dropdown-item color-picker" id="darkslategray">Darkslategray</button>
+                                <button class="dropdown-item color-picker" id="palevioletred">PaleVioletRed</button>
+                            </div>
                         </li>
                     </ul>
             </div>
@@ -30,7 +35,7 @@
     <div class="container" style="margin-top: 50px;">
         <div class="row">
             <div class="col-md-6 text-center"><img class="login-icon" style="margin: 5px;" src={% static "assets/img/icon.png"%}>
-                <p style="font-size: 20px;">All information you need in Josearch!</p>
+                <p class="slagon">All information you need in Josearch!</p>
             </div>
             <div class="col">
 
@@ -43,8 +48,8 @@
                     <input class="form-control login-input" type="text" name="username" placeholder="Username">
                     <input class="form-control login-input" type="password" name="password" placeholder="Password">
                     <div class="form-row" style="max-width: 400px;margin-right: 0px;margin-left: 0px;padding-right: 5px;padding-left: 5px;">
-                        <div class="col" style="text-align: left;margin-top: 5px;"><a href="/register/">Sign Up?</a></div>
-                        <div class="col" style="text-align: right;"><button class="btn btn-primary" type="submit" style="width: 200px;border-radius: 50px;">Log In</button></div>
+                        <div class="col sign-up" style="text-align: left;margin-top: 5px;"><a class="sign-up" href="/register/">Sign Up?</a></div>
+                        <div class="col login-submit" style="text-align: right;"><button class="btn btn-primary" type="submit" style="width: 200px;border-radius: 50px;">Log In</button></div>
                     </div>
                 </form>
             </div>
@@ -56,6 +61,7 @@
     </footer>
     <script src={% static "assets/js/jquery.min.js" %}></script>
     <script src={% static "assets/bootstrap/js/bootstrap.min.js"%}></script>
+    <script src={% static "assets/js/nav.js" %}></script>
 </body>
 
 </html>
