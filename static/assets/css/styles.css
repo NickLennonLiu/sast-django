@@ -259,8 +259,28 @@ body {
 }
 
 .page-item {
-  background-color: var(--secondary);
   margin-left: 10px;
   margin-right: 10px;
-  border-radius: 10px;
+  display:flex;
+}
+.page-item:first-child .page-link{
+  border-radius: 20px;
+}
+
+.page-item:last-child .page-link{
+  border-radius: 20px;
+}
+
+.page-link {
+  margin: 0 auto;
+  background-color: var(--secondary);
+  border-radius: 20px;
+  border-width: 0;
+  align-self: center;
+}
+
+.cur-page-link {
+  font-size: 2em;
+  color:black;
+  border-radius: 20px;
 }

@@ -62,7 +62,14 @@
                         <li class="page-item"><a class="page-link" href="?keyword={{ keyword }}&page={{ cur_page|add:-1 }}" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
                     {% endif %}
                     {% for pi in page_list %}
-                        <li class="page-item"><a class="page-link" href="?keyword={{ keyword }}&page={{ pi }}">{% ifequal pi|add:0 cur_page|add:0 %}<span style="color:black;font-size:2em">{{ pi }}</span>{% else %}{{ pi }}{% endifequal %}</a></li>
+                        <li class="page-item">
+                            {% ifequal pi|add:0 cur_page|add:0 %}
+                                <a class="page-link cur-page-link" href="?keyword={{ keyword }}&page={{ pi }}">{{ pi }}</a>
+                            {% else %}
+                                <a class="page-link" href="?keyword={{ keyword }}&page={{ pi }}">{{ pi }}</a>
+                            {% endifequal %}
+
+                        </li>
                     {% endfor %}
                     {% if cur_page != num_pages %}
                     <li class="page-item"><a class="page-link" href="?keyword={{ keyword }}&page={{ cur_page|add:1 }}" aria-label="Next"><span aria-hidden="true">»</span></a></li>
