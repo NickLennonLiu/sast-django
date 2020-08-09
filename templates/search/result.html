@@ -39,7 +39,7 @@
         <div class="container d-flex flex-column justify-content-center align-items-center align-content-center align-items-xl-center">
 
             <div class="col-sm-12 col-md-12 col-lg-10 col-xl-9">
-                <p> Used time: {{ used_time }} seconds</p>
+                <p> Found {{ total_results }} results in {{ used_time }} s. Currently on Page {{ cur_page }}/{{ num_pages }}</p>
                 {% for article in result %}
                     <div class="row article">
                         <div class="col-auto col-sm-3 col-md-auto col-lg-auto col-xl-auto d-flex flex-column justify-content-center align-items-end"><img style="max-width: 100px;max-height: 100px;" src={% static 'assets/img/icon.png' %}></div>
@@ -58,13 +58,15 @@
             </div>
             <nav class="pagination">
                 <ul class="pagination">
-                    <li class="page-item"><a class="page-link" href="#" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item"><a class="page-link" href="#">4</a></li>
-                    <li class="page-item"><a class="page-link" href="#">5</a></li>
-                    <li class="page-item"><a class="page-link" href="#" aria-label="Next"><span aria-hidden="true">»</span></a></li>
+                    {% if cur_page != 1 %}
+                        <li class="page-item"><a class="page-link" href="?keyword={{ keyword }}&page={{ cur_page|add:-1 }}" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
+                    {% endif %}
+                    {% for pi in page_list %}
+                        <li class="page-item"><a class="page-link" href="?keyword={{ keyword }}&page={{ pi }}">{% ifequal pi|add:0 cur_page|add:0 %}<span style="color:black;font-size:2em">{{ pi }}</span>{% else %}{{ pi }}{% endifequal %}</a></li>
+                    {% endfor %}
+                    {% if cur_page != num_pages %}
+                    <li class="page-item"><a class="page-link" href="?keyword={{ keyword }}&page={{ cur_page|add:1 }}" aria-label="Next"><span aria-hidden="true">»</span></a></li>
+                    {% endif %}
                 </ul>
             </nav>
         </div>

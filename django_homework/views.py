@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 from articles.models import Article
 from django.db.models import Q
 import datetime
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
 def login(request):
@@ -49,15 +50,38 @@ def register(request):
 def search(request):
     username = auth.get_user(request).username
     keyword = request.GET.get("keyword")
+
     time = datetime.datetime.now()
     result = Article.objects.filter(Q(title__contains=keyword) | Q(content__contains=keyword))
     timedelta = datetime.datetime.now() - time
+    p = Paginator(result.order_by("-time", "title"), 10)
+    page = request.GET.get("page")
     content = {
-        "result": result,
         "used_time": timedelta.total_seconds(),
         "keyword": keyword,
-        "username": username
+        "username": username,
+        "num_pages": p.num_pages,
+        "total_results": result.count()
     }
+    cur_page = page
+    if not page:
+        content["result"] = p.page(1)
+        content["cur_page"] = 1
+        cur_page = 1
+    else:
+        try:
+            content["result"] = p.page(page)
+            content["cur_page"] = page
+            cur_page = int(page)
+        except PageNotAnInteger:
+            content["result"] = p.page(1)
+            content["cur_page"] = 1
+            cur_page = 1
+        except EmptyPage:
+            content["result"] = p.page(p.num_pages)
+            content["cur_page"] = p.num_pages
+            cur_page = p.num_pages
+    content["page_list"] = range(max(1, cur_page-3), min(p.num_pages, cur_page + 3)+1)
     return render(request, "search/result.html", content)
 
 

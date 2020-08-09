@@ -142,6 +142,7 @@ footer {
 .pagination {
   display: flex;
   justify-content: center;
+  align-content: center;
   padding-top: 10px;
 }
 
@@ -255,4 +256,11 @@ body {
 
 .sign-up {
   color: var(--text)!important;
+}
+
+.page-item {
+  background-color: var(--secondary);
+  margin-left: 10px;
+  margin-right: 10px;
+  border-radius: 10px;
 }
